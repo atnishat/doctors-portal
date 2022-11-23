@@ -5,7 +5,9 @@ import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import ManagedDoctor from "../../Pages/Dashboard/ManagedDoctors/ManagedDoctor";
 import Myappointment from "../../Pages/Dashboard/MyAppointment/Myappointment";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
 import Login from "../../Pages/Login/Login";
+import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 import Signup from "../../Pages/Signup/Signup";
 import AdminRoutes from "../AdminRoutes/AdminRoutes";
 import Privateroute from "../PrivateRoutes/Privateroute";
@@ -22,6 +24,7 @@ const { default: Home } = require("../../Pages/Home/Home/Home");
 {
     path: '/',
     element:<Main></Main>,
+    errorElement:<DisplayError></DisplayError>,
     children:[
         {
             path:'/',
@@ -44,6 +47,7 @@ const { default: Home } = require("../../Pages/Home/Home/Home");
         {
             path:'/dashboard',
             element:<Privateroute><DashboardLayout></DashboardLayout></Privateroute>,
+            errorElement:<DisplayError></DisplayError>,
             children:[
                 {
                     path:'/dashboard',
@@ -62,6 +66,12 @@ const { default: Home } = require("../../Pages/Home/Home/Home");
                 {
                     path:'/dashboard/managedoctors',
                     element:<AdminRoutes><ManagedDoctor></ManagedDoctor></AdminRoutes>
+                }
+                ,
+                {
+                    path:'/dashboard/payment/:id',
+                    element:<AdminRoutes><Payment></Payment></AdminRoutes>,
+                    loader:({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
                 }
             ]
         }
