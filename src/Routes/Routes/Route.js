@@ -70,8 +70,8 @@ const { default: Home } = require("../../Pages/Home/Home/Home");
                 ,
                 {
                     path:'/dashboard/payment/:id',
-                    element:<AdminRoutes><Payment></Payment></AdminRoutes>,
-                    loader:({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                    element:<Payment></Payment>,
+                    loader:({params}) => fetch(`https://y-psi-lyart.vercel.app/bookings/${params.id}`)
                 }
             ]
         }
