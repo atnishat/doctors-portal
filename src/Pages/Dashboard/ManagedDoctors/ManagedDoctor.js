@@ -16,7 +16,7 @@ const ManagedDoctor = () => {
         queryKey: ['doctors'],
         queryFn: async () => {
             try {
-                const res = await fetch('https://y-psi-lyart.vercel.app/doctors', {
+                const res = await fetch('http://localhost:5000/doctors', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -32,7 +32,7 @@ const ManagedDoctor = () => {
 
     
     const handleDeleteDoctor = doctor => {
-        fetch(`https://y-psi-lyart.vercel.app/doctors/${doctor._id}`, {
+        fetch(`http://localhost:5000/doctors/${doctor._id}`, {
             method: 'DELETE', 
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

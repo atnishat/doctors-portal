@@ -16,7 +16,7 @@ const CheckoutFrom = ({booking}) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("https://y-psi-lyart.vercel.app/create-payment-intent", {
+        fetch("http://localhost:5000/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -86,7 +86,7 @@ const CheckoutFrom = ({booking}) => {
                 email,
                 bookingId: _id
             }
-            fetch('https://y-psi-lyart.vercel.app/payments', {
+            fetch('http://localhost:5000/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
